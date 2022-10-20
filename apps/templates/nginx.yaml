@@ -16,8 +16,6 @@ spec:
     targetRevision: 9.3.12
     helm:
       values: |
-        service:
-          type: LoadBalancer
         image:
           tag: latest
   syncPolicy:
