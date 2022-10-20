@@ -19,7 +19,7 @@ spec:
         service:
           type: LoadBalancer
         image:
-          tag: 1.3.0-debian-11-r9
+          tag: latest
   syncPolicy:
     automated:
       prune: true
