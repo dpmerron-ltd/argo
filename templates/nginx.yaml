@@ -1,7 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: nginx-ingress
+  namespace: default
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -10,10 +11,17 @@ spec:
     namespace: default
   project: default
   source:
-    path: apps/
-    repoURL: git@github.com:dpmerron-ltd/argo.git
-    targetRevision: HEAD
+    chart: nginx-ingress-controller
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 9.3.12
+    helm:
+      values: |
+        service:
+          type: LoadBalancer
+        image:
+          tag: 1.3.0-debian-11-r9
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+
